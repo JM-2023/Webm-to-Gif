@@ -1,0 +1,32 @@
+[package]
+name = "webm2gif"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+camino = "1.0.7"
+color-eyre = "0.6.0"
+ffmpeg-sys-next = { version = "5.0.0", default-features = false, features = ["static", "swscale", "avcodec", "avformat"] }
+gifski = { version = "1.6.4", default-features = false }
+humansize = "1.1.1"
+image = { version = "0.24.0", optional = true, default-features = false, features = ["tga"] }
+imgref = "1.9.1"
+indicatif = "0.17.0-rc.4"
+libc = "0.2.117"
+rgb = "0.8.31"
+scopeguard = "1.1.0"
+unicode-width = "0.1.9"
+
+[features]
+debug_dump = ["image"]
+
+[profile.dev]
+opt-level = 1
+
+[profile.dev.package.backtrace]
+opt-level = 3
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+debug = true
